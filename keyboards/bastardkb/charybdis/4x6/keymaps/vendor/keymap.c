@@ -55,6 +55,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LL_QUOT LT(LAYER_LOWER, KC_QUOT)
 #define RL_G    LT(LAYER_RAISE, KC_G)
 #define RL_ENT  LT(LAYER_RAISE, KC_ENT)
+#define RL_BSPC LT(LAYER_RAISE, KC_BSPC)
 #define RL_H    LT(LAYER_RAISE, KC_H)
 // clang-format on
 
@@ -91,8 +92,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_LSFT,    PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, PT_SLSH, KC_RSFT,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                   KC_LGUI, KC_SPC,  LL_TAB,     RL_ENT,  KC_SPC,
-                                            KC_DEL,   LOWER,    KC_BSPC
+                                   KC_LGUI, KC_SPC,  LL_TAB,    RL_BSPC,  KC_SPC,
+                                            KC_DEL,   LOWER,    KC_ENT
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
