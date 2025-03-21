@@ -44,14 +44,17 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 #define LOWER MO(LAYER_LOWER)
 #define RAISE MO(LAYER_RAISE)
+#define POINTER MO(LAYER_POINTER)
 #define PT_Z    LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
 // Default modifiers
 // clang-format off
 #define LL_ESC  LT(LAYER_LOWER, KC_ESC)
+#define LL_TAB  LT(LAYER_LOWER, KC_TAB)
 #define LL_QUOT LT(LAYER_LOWER, KC_QUOT)
 #define RL_G    LT(LAYER_RAISE, KC_G)
+#define RL_ENT  LT(LAYER_RAISE, KC_ENT)
 #define RL_H    LT(LAYER_RAISE, KC_H)
 // clang-format on
 
@@ -88,23 +91,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_LSFT,    PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, PT_SLSH, KC_RSFT,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                   KC_LGUI, KC_SPC, KC_BSPC,     KC_ENT,  KC_SPC,
-                                            KC_DEL,   LOWER,      RAISE
+                                   KC_LGUI, KC_SPC,  LL_TAB,     RL_ENT,  KC_SPC,
+                                            KC_DEL,   LOWER,     KC_BSLS
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
   [LAYER_LOWER] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       RGB_TOG, KC_MPLY,  KC_F10,  KC_F11,  KC_F12, _______,    _______,  KC_NUM, KC_PEQL, KC_PSLS, KC_PAST, _______,
+       _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       RGB_MOD, KC_VOLU,   KC_F7,   KC_F8,   KC_F9, _______,    _______,   KC_P7,   KC_P8,   KC_P9, KC_PPLS, _______,
+       _______, KC_SCRL, KC_PAUS,   KC_UP, KC_PEQL, KC_LCBR,    KC_RCBR,   KC_P7,   KC_P8,   KC_P9, KC_PPLS, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, KC_VOLD,   KC_F4,   KC_F5,   KC_F6, _______,    _______,   KC_P4,   KC_P5,   KC_P6, KC_PMNS, _______,
+       KC_PSCR,  KC_INS, KC_LEFT, KC_DOWN,KC_RIGHT, KC_LBRC,    KC_RBRC,   KC_P4,   KC_P5,   KC_P6, KC_PMNS, KC_PSLS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-      RGB_RMOD, KC_MUTE,   KC_F1,   KC_F2,   KC_F3, _______,    _______,   KC_P1,   KC_P2,   KC_P3, KC_PENT, _______,
+       _______,  KC_DEL,   KC_F1,   KC_F2,   KC_F3, KC_LPRN,    KC_RPRN,   KC_P1,   KC_P2,   KC_P3, KC_PENT, _______,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  _______, _______, _______,    _______, KC_PDOT,
-                                           _______, _______,      KC_P0
+                                  KC_VOLD, KC_VOLU, _______,    POINTER,   KC_P0,
+                                           _______, _______,    KC_PDOT
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -112,26 +115,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_EXLM, KC_LCBR, KC_QUOT,  KC_DQT, KC_RCBR, KC_QUES,    KC_SCLN, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, _______,
+       _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,    KC_CIRC, KC_AMPR, KC_ASTR, KC_QUES, KC_QUOT, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_HASH, KC_CIRC,  KC_EQL, KC_MINS,  KC_DLR, KC_ASTR,     KC_DOT, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______,
+       _______, KC_PLUS,  KC_EQL, KC_LPRN, KC_RPRN, KC_DQUO,    KC_COLN, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-         KC_AT, KC_LABK, KC_PIPE, _______, KC_RABK, KC_SLSH,    KC_ASTR, KC_BSLS, KC_AMPR,  KC_GRV, KC_TILD, _______,
+       _______, KC_LABK, KC_PIPE, KC_MINS, KC_RABK, KC_BSLS,     KC_GRV, KC_UNDS, KC_SLSH, KC_TILD, KC_SCLN, _______,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  KC_TILD, KC_PERC, XXXXXXX,    XXXXXXX, XXXXXXX,
-                                           KC_COLN, _______,    XXXXXXX
+                                  KC_TILD, KC_PERC, POINTER,    XXXXXXX, KC_MPLY,
+                                           XXXXXXX, XXXXXXX,    KC_MNXT
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
   [LAYER_POINTER] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  EE_CLR,     EE_CLR, XXXXXXX, DPI_MOD, S_D_MOD, XXXXXXX, QK_BOOT,
+       QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  EE_CLR,     EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX,DPI_RMOD,S_D_RMOD, XXXXXXX, XXXXXXX,
+       XXXXXXX,DPI_RMOD, DPI_MOD,S_D_RMOD, S_D_MOD, XXXXXXX,    XXXXXXX,   KC_F7,   KC_F8,   KC_F9,  KC_F12, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX,    XXXXXXX, KC_RSFT, KC_RGUI, KC_RALT, KC_RCTL, XXXXXXX,
+       XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,    XXXXXXX,   KC_F4,   KC_F5,   KC_F6,  KC_F11, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, _______, DRGSCRL, SNIPING, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, SNIPING, DRGSCRL, _______, XXXXXXX,
+       XXXXXXX, XXXXXXX, DRGSCRL, SNIPING, KC_VOLD, KC_VOLU,    XXXXXXX,   KC_F1,   KC_F2,   KC_F3,  KC_F10, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   XXXXXXX, KC_BTN2, KC_BTN3,    KC_BTN3, KC_BTN2,
                                            XXXXXXX, KC_BTN1,    KC_BTN1
